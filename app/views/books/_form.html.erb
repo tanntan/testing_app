@@ -1,0 +1,57 @@
+
+<style> 
+#test {
+    position: relative;
+}
+
+#test .wrapper {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+#test .wrapper:hover {
+    opacity: 0.3;
+}
+
+#test button {
+    background-color: #ccc;
+    border: none;
+    color: #666;
+    padding: 3px 5px;
+    border-radius: 5px;
+    position: relative;
+    top: 0;
+    z-index: 1;
+}
+</style>
+<div>
+
+	<div>
+
+	<%= simple_form_for @book, :html => { :multipart => true } do |f| %>
+
+		<label>Image File</label>
+			<div id="test">
+             <div class="wrapper">
+       	      <%= f.file_field :avater %>
+           </div>
+            <button>Browser</button>
+          </div>
+          
+		    <label>Category</label><br>
+			<%= select_tag(:subject_id, options_for_select(@subjects), :prompt => "select a subjection")%>
+			<%= f.input :title, label: "Book Title" %>
+			<%= f.input :description %>
+			<%= f.input :autor, label: "Author" %>
+			<%= f.button :submit, :class => "btn-custom2" %>
+		<% end %>
+
+	</div>
+
+</div>
+<script>
+
+</script>

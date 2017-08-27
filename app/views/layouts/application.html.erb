@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+  <nav class ="navbar navbar-default">
+    <div class ="container">
+      <div class="navbar-header">
+        <%= link_to "BookView", root_path, class: "navbar-brand" %>
+      </div>
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to "Sign Up", new_user_registration_path %>
+          </li>
+          <% if user_signed_in? %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+          <% end %>
+        
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Subject.all.each do |subject| %>
+            <li><%= link_to subject.name, books_path(subject: subject.name), class: "link" %></li>
+            <% end %>
+          </ul>
+        </li>
+        
+        
+        <% if user_signed_in? %>
+        <li><%= link_to "Add Book", new_book_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+<p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+<div class="container">
+    <%= yield %>
+</div>
+<!-- Social Footer, Colour Matching Icons -->
+<!-- Include Font Awesome Stylesheet in Header -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- // -->
+<div class="container">
+
+    <hr />
+        <div class="text-center center-block">
+            <br />
+                <a href="https://www.facebook.com/tanntan.fe"><i class="fa fa-facebook-square fa-3x social"></i></a>
+	            <a href="https://twitter.com"><i class="fa fa-twitter-square fa-3x social"></i></a>
+	            <a href="https://plus.google.com"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+	            <a href="mailto:tanntan97@gmail.com"><i class="fa fa-envelope-square fa-3x social"></i></a>
+</div>
+    <hr />
+</body>
+</html>
